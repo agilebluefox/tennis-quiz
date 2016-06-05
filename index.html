@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <link href='https://fonts.googleapis.com/css?family=Freckle+Face|Caveat:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Men's Tennis Quiz</title>
+</head>
+<body>
+<h1 class='title'>Tennis Quiz</h1>
+<section class="quiz">
+        <div class="question"><span>Question </span><span class="count">1</span>: <p class="question-text">This player has won the most Grand Slam titles?</p></div>
+
+        <div class="container">
+
+        <div class="player"><img src="images/federer.png" height="603" width="379" alt="Tennis player" class="player-image"></div>
+        <form class="responses">
+            <ul class="response-list">
+                <li class="response"><input type="radio"><span>Roger Federer</span></li>
+                <li class="response"><input type="radio"><span>Rafael Nadal</span></li>
+                <li class="response"><input type="radio"><span>Pete Sampras</span></li>
+                <li class="response"><input type="radio"><span>Bjorn Borg</span></li>
+            </ul>
+            <input type="submit" id="submit-button" value="Submit" name="submit" />
+        </form>
+        <div class="score">
+            <ul class="tennis-balls">
+                <li class="score-ball"><img src="images/correct-answer-ball.png" height="57" width="57" alt="Correct" class="right-answer"></li>
+                <li class="score-ball"><img src="images/wrong-answer-ball.png" height="57" width="57" alt="Incorrect" class="wrong-answer"></li>
+                <li class="score-ball"><img src="images/no-answer-ball.png" height="57" width="57" alt="Not Attempted" class="no-answer"></li>
+                <li class="score-ball"><img src="images/no-answer-ball.png" height="57" width="57" alt="Not Attempted" class="no-answer"></li>
+                <li class="score-ball"><img src="images/no-answer-ball.png" height="57" width="57" alt="Not Attempted" class="no-answer"></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</section>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
