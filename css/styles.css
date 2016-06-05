@@ -10,11 +10,10 @@ html {
 }
 
 body {
-    background-image: url(../images/tenniscourt01.jpg);
+    background-image: url(../images/tenniscourt.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    background-color: darkorange;
 }
 
 h1.title{
