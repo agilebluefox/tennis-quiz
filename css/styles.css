@@ -16,15 +16,24 @@ body {
     color: white;
 }
 
-h1 {
+h1.title{
     font-family: 'Freckle Face', cursive;
     font-size: 4rem;
     text-align: center;
     color: yellow;
     text-shadow: 3px 6px 12px rgba(50, 50, 50, 1);
+    border-top: 10px solid darkorange;
+    border-bottom: 10px solid darkorange;
+    padding: 1rem 0;
+    background-color: darkred;
+    margin-top: 0;
 }
 
 /* Section - Quiz styles */
+
+.clearfix {
+    clear: both;
+}
 
 .question {
     color: yellow;
@@ -61,6 +70,8 @@ h1 {
 
 .container {
     overflow: hidden;
+    text-align: center;
+    margin-top: 2.5rem;
 }
 
 .player {
@@ -141,20 +152,21 @@ li.score-ball img {
 @media screen and (min-width: 1200px) {
 
     .player {
-        float: left;
-        margin-left: 3%;
+        display: inline-block;
+        width: 40%;
     }
 
     .responses {
-        float: left;
-        margin-left: 3%;
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
     }
 
     .score {
-        width: 60px;
-        float: left;
-        margin-left: 3%;
+        width: 10%;
+        display: inline-block;
         margin-top: 0;
+        vertical-align: top;
     }
 
     li.score-ball {
