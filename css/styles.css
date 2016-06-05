@@ -78,7 +78,7 @@ h1.title{
     height:605px;
     width: 379px;
     background-color: rgba(20, 20, 20, 0.3);
-    border: 1px solid black;
+    border: 1px solid rgba(63, 63, 63, 1);
     border-radius: 10px;
     margin: 0 auto;
 }
