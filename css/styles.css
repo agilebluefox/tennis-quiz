@@ -105,6 +105,7 @@ li.response {
 
 .response span {
     margin-left: 0.5rem;
+    text-shadow: 3px 6px 12px rgba(50, 50, 50, 1);
 }
 
 input[type="radio"] {
