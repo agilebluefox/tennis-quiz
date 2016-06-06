@@ -61,7 +61,7 @@ $(document).ready( function() {
     function startQuiz() {
         // Go to the top of the page.
         scrollToTop();
-
+        resetScore();
         setImage('mystery');
         setButton('submit');
         updateQuestion();
@@ -120,6 +120,7 @@ $(document).ready( function() {
         e.preventDefault();
 
         questionNumber = 0;
+        ballNumber = 0;
         resetScore();
         startQuiz();
     });
@@ -154,9 +155,10 @@ $(document).ready( function() {
     function updateQuestion() {
         var questionText = questions[questionNumber].questText;
         var choices = questions[questionNumber].choices;
+        var number = questionNumber + 1;
 
         // Insert the new question text and the list of choices into the page.
-        $('.question').html('<span>Question </span><span class="count">1</span>: <p class="answer-text">' + questionText + '</p>');
+        $('.question').html('<span>Question </span><span class="count">' + number + '</span>: <p class="answer-text">' + questionText + '</p>');
         $('ul.response-list').empty();
         $('div.answer').hide();
         $('ul.response-list').show();
@@ -169,25 +171,26 @@ $(document).ready( function() {
     function checkResponse() {
         // Add a few variables that will be used to render the correct
         // score ball depending on the user's response to the question.
-        var ballNumber = questionNumber + 1;
-        var correctBall = 'images/correct-answer-ball.png';
-        var incorrectBall = 'images/wrong-answer-ball.png';
         var choice = $("input[type='radio'][name='selection']:checked").val();
         var correctAnswer = questions[questionNumber].correct;
         var ball;
 
         // Check the response to see if it's right or wrong.
         if (choice == correctAnswer) {
-            ball = correctBall;
+            ball = 'images/correct-answer-ball.png';
         } else {
-            ball = incorrectBall;
+            ball = 'images/wrong-answer-ball.png';
         }
-        $('li.ball-' + ballNumber + ' img').attr('src', ball);
+        $('li.ball-' + questionNumber + ' img').attr('src', ball);
         return;
     }
 
     function resetScore() {
-        $('li.score-ball').replaceWith('<li class="score-ball ball-1"><img src="images/no-answer-ball.png" height="57" width="57" alt="Score ball"></li>');
+        $('ul.tennis-balls').empty();
+        for (var i=0; i < questions.length; i++) {
+            $('ul.tennis-balls').append('<li class="score-ball ball-' + i + '"><img src="images/no-answer-ball.png" height="57" width="57" alt="Score ball"></li>');
+        }
+
     }
 
     function scrollToTop() {
