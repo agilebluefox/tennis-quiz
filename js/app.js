@@ -57,9 +57,12 @@ $(document).ready( function() {
     // Initialize variables
     var questionNumber = 0;
     var questionText = questions[questionNumber].questText;
-    var image = questions[questionNumber].mysteryImg;
     var button = $('#submit-button');
     var choices = questions[questionNumber].choices;
+
+    function startQuiz() {
+
+    }
 
     $('.button').on('click', '#submit-button', function(e) {
         // Prevent the page from reloading.
@@ -78,10 +81,7 @@ $(document).ready( function() {
         $(button).hide();
 
         // Set the current image to the actual image.
-        image = questions[questionNumber].actualImg;
-        console.log("The image is: " + image);
-        $('.player img').attr('src', image);
-
+        setImage('actual');
         // Change the button depending on where the user is in the quiz.
         if (questionNumber < 4) {
             button = $('#next-button');
@@ -127,9 +127,7 @@ $(document).ready( function() {
             $('ul.response-list').append('<li class="response"><input type="radio" name="selection" value="' + i + '"><span>' + choices[i] + '</span></li>');
         }
 
-        // Reset the image to the mystery image.
-        image = questions[questionNumber].mysteryImg;
-        $('.player img').attr('src', image);
+        setImage('mystery');
 
         // Show the submit button.
         button.hide();
@@ -137,6 +135,20 @@ $(document).ready( function() {
         $(button).show();
 
     });
+
+    function setImage(type) {
+        var image;
+
+        if (type === 'actual') {
+            // Set the current image to the actual image.
+            image = questions[questionNumber].actualImg;
+        } else if (type === 'mystery') {
+            // Set the image to the mystery image.
+            image = questions[questionNumber].mysteryImg;
+        }
+        $('.player img').attr('src', image);
+        return;
+    }
 
 
 });
