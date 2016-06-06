@@ -180,7 +180,7 @@ $(document).ready( function() {
     }
 
     function resetScore() {
-
+        $('li.score-ball').replaceWith('<li class="score-ball ball-1"><img src="images/no-answer-ball.png" height="57" width="57" alt="Score ball"></li>');
     }
 
 });
