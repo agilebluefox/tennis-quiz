@@ -41,6 +41,7 @@ h1.title{
     clear: both;
     text-shadow: 3px 6px 12px rgba(50, 50, 50, 1);
     padding: 1rem;
+    line-height: 4rem;
 }
 
 .count {
@@ -68,7 +69,6 @@ h1.title{
     clear: both;
     text-shadow: 3px 6px 12px rgba(50, 50, 50, 1);
     padding: 1rem;
-    display: none;
 }
 
 .answer-text {
@@ -92,23 +92,13 @@ h1.title{
     margin-top: 2.5rem;
 }
 
-.mystery-player {
+.player {
     height:605px;
     width: 379px;
     background-color: rgba(20, 20, 20, 0.3);
     border: 1px solid rgba(63, 63, 63, 1);
     border-radius: 10px;
     margin: 0 auto;
-}
-
-.actual-player {
-    height:605px;
-    width: 379px;
-    background-color: rgba(20, 20, 20, 0.3);
-    border: 1px solid rgba(63, 63, 63, 1);
-    border-radius: 10px;
-    margin: 0 auto;
-    display: none;
 }
 
 .responses {
