@@ -56,13 +56,11 @@ $(document).ready( function() {
 
     // Initialize variables
     var questionNumber = 0;
-    var questionText = questions[questionNumber].questText;
-    var choices = questions[questionNumber].choices;
-    setButton('submit');
-
+    startQuiz();
 
     function startQuiz() {
-
+        setButton('submit');
+        updateQuestion();
     }
 
     $('.button').on('click', '#submit-button', function(e) {
@@ -112,20 +110,12 @@ $(document).ready( function() {
         // Prevent the button event from reloading the page.
         e.preventDefault();
 
+        // Get the new question and answer choices.
         // Increment the question number.
         questionNumber += 1;
-        questionText = questions[questionNumber].questText;
-        choices = questions[questionNumber].choices;
+        updateQuestion();
 
-        // Insert the new question text and the list of choices into the page.
-        $('.question').html('<span>Question </span><span class="count">1</span>: <p class="answer-text">' + questionText + '</p>');
-        $('ul.response-list').empty();
-        $('div.answer').hide();
-        $('ul.response-list').show();
-        for (var i=0; i < choices.length; i++) {
-            $('ul.response-list').append('<li class="response"><input type="radio" name="selection" value="' + i + '"><span>' + choices[i] + '</span></li>');
-        }
-
+        // Update the image.
         setImage('mystery');
 
         // Show the submit button.
@@ -161,6 +151,20 @@ $(document).ready( function() {
         return;
     }
 
+    function updateQuestion() {
+        var questionText = questions[questionNumber].questText;
+        var choices = questions[questionNumber].choices;
+
+        // Insert the new question text and the list of choices into the page.
+        $('.question').html('<span>Question </span><span class="count">1</span>: <p class="answer-text">' + questionText + '</p>');
+        $('ul.response-list').empty();
+        $('div.answer').hide();
+        $('ul.response-list').show();
+        for (var i=0; i < choices.length; i++) {
+            $('ul.response-list').append('<li class="response"><input type="radio" name="selection" value="' + i + '"><span>' + choices[i] + '</span></li>');
+        }
+        return;
+    }
 
 });
 
