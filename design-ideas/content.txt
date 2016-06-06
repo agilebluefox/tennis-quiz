@@ -1,3 +1,5 @@
+Questions, Answers, and Feedback
+
 Question 1: This player on the ATP Tour has won the most Grand Slam Championships.
 Answer: Roger Federer
 Feedback: Roger Federer has won 17 Grand Slam titles including 7 Wimbledon, 5 US Open, 1 French Open, and 4 Australian Open titles.
@@ -17,3 +19,31 @@ Feedback: Novak is currently considered ranked number 1 in the world on the ATP 
 Question 5: The longest singles match played at Wimbledon was won by this player.
 Answer: John Isner
 Feedback: The longest match at Wimbledon lasted 11 hours, 5 minutes and was played over a three day period since there are no court lights.
+
+Execution Flow
+
+When the page loads:
+    * Display the first question
+    * Display the mystery image
+    * Display the choices
+    * Show the submit button
+
+When an answer is submitted (exception - last question):
+    * Display the feedback (maybe replace the choices?)
+    * Display the actual image
+    * Show the next button
+
+When next button is submitted:
+    * Add one to the question number
+    * Display the new question
+    * Display the mystery image
+    * Display the choices
+    * Show the submit button
+
+When the last answer is submitted:
+    * Display the feedback
+    * Display the actual image
+    * Show the retake button
+
+When retake button is submitted:
+    * Repeat page load
