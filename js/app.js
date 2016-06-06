@@ -92,6 +92,8 @@ $(document).ready( function() {
         // Check the response and update the score.
         checkResponse();
 
+        // Go to the top of the page - for smaller displays.
+        scrollToTop();
 
     });
 
@@ -110,7 +112,7 @@ $(document).ready( function() {
         // Show the submit button.
         setButton('submit');
 
-        // Go to the top of the page.
+        // Go to the top of the page - for smaller displays.
         scrollToTop();
 
     });
