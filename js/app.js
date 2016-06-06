@@ -57,13 +57,87 @@ $(document).ready( function() {
     // Initialize variables
     var questionNumber = 0;
     var questionText = questions[questionNumber].questText;
-    var mysteryImage = questions[questionNumber].mysteryImg;
-    var actualImage = questions[questionNumber].actualImg;
-    var button = $('#submit');
+    var image = questions[questionNumber].mysteryImg;
+    var button = $('#submit-button');
+    var choices = questions[questionNumber].choices;
 
-    // $('.button')on('click', '#submit-button', function() {
+    $('.button').on('click', '#submit-button', function(e) {
+        // Prevent the page from reloading.
+        e.preventDefault();
 
-    // });
+        // Set the feedback to present to the user.
+        var feedback = questions[questionNumber].feedback;
+        console.log("The feedback is: " + feedback);
+
+        // Hide the list of choices and display the feedback.
+        $('ul.response-list').hide();
+        $('div.answer').html('<span>Answer: </span><p class="answer-text">' + feedback + '</p>');
+        $('div.answer').show();
+
+        // Hide the current submit button since I'll present a different one depending on the state.
+        $(button).hide();
+
+        // Set the current image to the actual image.
+        image = questions[questionNumber].actualImg;
+        console.log("The image is: " + image);
+        $('.player img').attr('src', image);
+
+        // Change the button depending on where the user is in the quiz.
+        if (questionNumber < 4) {
+            button = $('#next-button');
+        } else {
+            button = $('#retake-button');
+        }
+        $(button).show();
+
+        // Add a few variables that will be used to render the correct
+        // score ball depending on the user's response to the question.
+        var ballNumber = questionNumber + 1;
+        var correctBall = 'images/correct-answer-ball.png';
+        var incorrectBall = 'images/wrong-answer-ball.png';
+        var choice = $("input[type='radio'][name='selection']:checked").val();
+        var correctAnswer = questions[questionNumber].correct;
+        var ball;
+
+        // Check the response to see if it's right or wrong.
+        if (choice == correctAnswer) {
+            ball = correctBall;
+        } else {
+            ball = incorrectBall;
+        }
+        $('li.ball-' + ballNumber + ' img').attr('src', ball);
+
+    });
+
+    $('.button').on('click', '#next-button', function(e) {
+        // Prevent the button event from reloading the page.
+        e.preventDefault();
+
+        // Increment the question number.
+        questionNumber += 1;
+        questionText = questions[questionNumber].questText;
+        choices = questions[questionNumber].choices;
+
+        // Insert the new question text and the list of choices into the page.
+        $('.question').html('<span>Question </span><span class="count">1</span>: <p class="answer-text">' + questionText + '</p>');
+        $('ul.response-list').empty();
+        $('div.answer').hide();
+        $('ul.response-list').show();
+        for (var i=0; i < choices.length; i++) {
+            $('ul.response-list').append('<li class="response"><input type="radio" name="selection" value="' + i + '"><span>' + choices[i] + '</span></li>');
+        }
+
+        // Reset the image to the mystery image.
+        image = questions[questionNumber].mysteryImg;
+        $('.player img').attr('src', image);
+
+        // Show the submit button.
+        button.hide();
+        button = $('#submit-button');
+        $(button).show();
+
+    });
+
 
 });
 
