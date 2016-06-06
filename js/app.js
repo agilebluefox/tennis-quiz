@@ -59,6 +59,7 @@ $(document).ready( function() {
     startQuiz();
 
     function startQuiz() {
+        setImage('mystery');
         setButton('submit');
         updateQuestion();
     }
@@ -69,13 +70,11 @@ $(document).ready( function() {
 
         // Set the feedback to present to the user.
         var feedback = questions[questionNumber].feedback;
-        console.log("The feedback is: " + feedback);
 
         // Hide the list of choices and display the feedback.
         $('ul.response-list').hide();
         $('div.answer').html('<span>Answer: </span><p class="answer-text">' + feedback + '</p>');
         $('div.answer').show();
-
 
         // Set the current image to the actual image.
         setImage('actual');
@@ -87,22 +86,8 @@ $(document).ready( function() {
             setButton('retake');
         }
 
-        // Add a few variables that will be used to render the correct
-        // score ball depending on the user's response to the question.
-        var ballNumber = questionNumber + 1;
-        var correctBall = 'images/correct-answer-ball.png';
-        var incorrectBall = 'images/wrong-answer-ball.png';
-        var choice = $("input[type='radio'][name='selection']:checked").val();
-        var correctAnswer = questions[questionNumber].correct;
-        var ball;
-
-        // Check the response to see if it's right or wrong.
-        if (choice == correctAnswer) {
-            ball = correctBall;
-        } else {
-            ball = incorrectBall;
-        }
-        $('li.ball-' + ballNumber + ' img').attr('src', ball);
+        // Check the response and update the score.
+        checkResponse();
 
     });
 
@@ -123,9 +108,17 @@ $(document).ready( function() {
 
     });
 
+    $('.button').on('click', '#retake-button', function(e) {
+        // Prevent the page reload.
+        e.preventDefault();
+
+        questionNumber = 0;
+        resetScore();
+        startQuiz();
+    });
+
     function setImage(type) {
         var image;
-
         if (type === 'actual') {
             // Set the current image to the actual image.
             image = questions[questionNumber].actualImg;
@@ -164,6 +157,30 @@ $(document).ready( function() {
             $('ul.response-list').append('<li class="response"><input type="radio" name="selection" value="' + i + '"><span>' + choices[i] + '</span></li>');
         }
         return;
+    }
+
+    function checkResponse() {
+        // Add a few variables that will be used to render the correct
+        // score ball depending on the user's response to the question.
+        var ballNumber = questionNumber + 1;
+        var correctBall = 'images/correct-answer-ball.png';
+        var incorrectBall = 'images/wrong-answer-ball.png';
+        var choice = $("input[type='radio'][name='selection']:checked").val();
+        var correctAnswer = questions[questionNumber].correct;
+        var ball;
+
+        // Check the response to see if it's right or wrong.
+        if (choice == correctAnswer) {
+            ball = correctBall;
+        } else {
+            ball = incorrectBall;
+        }
+        $('li.ball-' + ballNumber + ' img').attr('src', ball);
+        return;
+    }
+
+    function resetScore() {
+
     }
 
 });
