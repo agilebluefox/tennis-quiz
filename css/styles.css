@@ -69,6 +69,7 @@ h1.title{
     clear: both;
     text-shadow: 3px 6px 12px rgba(50, 50, 50, 1);
     padding: 1rem;
+    line-height: 4rem;
 }
 
 .answer-text {
@@ -231,6 +232,6 @@ li.score-ball img {
 
     li.score-ball {
         display: block;
-        margin: 1rem 0;
+        margin: 1rem auto;
     }
 }
