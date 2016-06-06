@@ -59,6 +59,9 @@ $(document).ready( function() {
     startQuiz();
 
     function startQuiz() {
+        // Go to the top of the page.
+        scrollToTop();
+
         setImage('mystery');
         setButton('submit');
         updateQuestion();
@@ -89,6 +92,7 @@ $(document).ready( function() {
         // Check the response and update the score.
         checkResponse();
 
+
     });
 
     $('.button').on('click', '#next-button', function(e) {
@@ -105,6 +109,9 @@ $(document).ready( function() {
 
         // Show the submit button.
         setButton('submit');
+
+        // Go to the top of the page.
+        scrollToTop();
 
     });
 
@@ -181,6 +188,10 @@ $(document).ready( function() {
 
     function resetScore() {
         $('li.score-ball').replaceWith('<li class="score-ball ball-1"><img src="images/no-answer-ball.png" height="57" width="57" alt="Score ball"></li>');
+    }
+
+    function scrollToTop() {
+        $(document).scrollTop(0);
     }
 
 });
