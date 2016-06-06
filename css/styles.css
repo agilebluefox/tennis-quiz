@@ -159,7 +159,6 @@ input[type="radio"] {
     border-radius: 10px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     font-size: 1.5rem;
-    display: none;
 }
 
 #next-button:hover {
@@ -178,7 +177,6 @@ input[type="radio"] {
     border-radius: 10px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     font-size: 1.5rem;
-    display: none;
 }
 
 #retake-button:hover {
@@ -213,15 +211,9 @@ li.score-ball img {
 
 @media screen and (min-width: 1200px) {
 
-    .mystery-player {
+    .player {
         display: inline-block;
         width: 40%;
-    }
-
-    .actual-player {
-        display: inline-block;
-        width: 40%;
-        display: none;
     }
 
     .responses {

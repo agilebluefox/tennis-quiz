@@ -57,8 +57,9 @@ $(document).ready( function() {
     // Initialize variables
     var questionNumber = 0;
     var questionText = questions[questionNumber].questText;
-    var button = $('#submit-button');
     var choices = questions[questionNumber].choices;
+    setButton('submit');
+
 
     function startQuiz() {
 
@@ -77,18 +78,16 @@ $(document).ready( function() {
         $('div.answer').html('<span>Answer: </span><p class="answer-text">' + feedback + '</p>');
         $('div.answer').show();
 
-        // Hide the current submit button since I'll present a different one depending on the state.
-        $(button).hide();
 
         // Set the current image to the actual image.
         setImage('actual');
+
         // Change the button depending on where the user is in the quiz.
         if (questionNumber < 4) {
-            button = $('#next-button');
+            setButton('next');
         } else {
-            button = $('#retake-button');
+            setButton('retake');
         }
-        $(button).show();
 
         // Add a few variables that will be used to render the correct
         // score ball depending on the user's response to the question.
@@ -130,9 +129,7 @@ $(document).ready( function() {
         setImage('mystery');
 
         // Show the submit button.
-        button.hide();
-        button = $('#submit-button');
-        $(button).show();
+        setButton('submit');
 
     });
 
@@ -147,6 +144,20 @@ $(document).ready( function() {
             image = questions[questionNumber].mysteryImg;
         }
         $('.player img').attr('src', image);
+        return;
+    }
+
+    function setButton(value) {
+        var submitHTML = '<input type="submit" id="submit-button" value="Submit" name="submit" />';
+        var nextHTML = '<input type="submit" id="next-button" value="Next" name="next" />';
+        var retakeHTML = '<input type="submit" id="retake-button" value="Try Again" name="retake" />';
+        if (value === 'submit') {
+            $('.button').html(submitHTML);
+        } else if (value === 'next') {
+            $('.button').html(nextHTML);
+        } else if (value === 'retake') {
+            $('.button').html(retakeHTML);
+        }
         return;
     }
 
