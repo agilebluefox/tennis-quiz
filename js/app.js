@@ -54,11 +54,12 @@ $(document).ready( function() {
 
     ];
 
-    // Initialize variables
-    var questionNumber = 0;
+    // Initialize variables and start the quiz.
+    var questionNumber;
     startQuiz();
 
     function startQuiz() {
+        questionNumber = 0;
         // Go to the top of the page.
         scrollToTop();
         resetScore();
@@ -70,28 +71,22 @@ $(document).ready( function() {
     $('.button').on('click', '#submit-button', function(e) {
         // Prevent the page from reloading.
         e.preventDefault();
-
         // Set the feedback to present to the user.
         var feedback = questions[questionNumber].feedback;
-
         // Hide the list of choices and display the feedback.
         $('ul.response-list').hide();
         $('div.answer').html('<span>Answer: </span><p class="answer-text">' + feedback + '</p>');
         $('div.answer').show();
-
         // Set the current image to the actual image.
         setImage('actual');
-
         // Change the button depending on where the user is in the quiz.
         if (questionNumber < 4) {
             setButton('next');
         } else {
             setButton('retake');
         }
-
         // Check the response and update the score.
         checkResponse();
-
         // Go to the top of the page - for smaller displays.
         scrollToTop();
 
@@ -100,18 +95,14 @@ $(document).ready( function() {
     $('.button').on('click', '#next-button', function(e) {
         // Prevent the button event from reloading the page.
         e.preventDefault();
-
         // Get the new question and answer choices.
         // Increment the question number.
         questionNumber += 1;
         updateQuestion();
-
         // Update the image.
         setImage('mystery');
-
         // Show the submit button.
         setButton('submit');
-
         // Go to the top of the page - for smaller displays.
         scrollToTop();
 
@@ -120,10 +111,6 @@ $(document).ready( function() {
     $('.button').on('click', '#retake-button', function(e) {
         // Prevent the page reload.
         e.preventDefault();
-
-        questionNumber = 0;
-        ballNumber = 0;
-        resetScore();
         startQuiz();
     });
 
@@ -176,7 +163,6 @@ $(document).ready( function() {
         var choice = $("input[type='radio'][name='selection']:checked").val();
         var correctAnswer = questions[questionNumber].correct;
         var ball;
-
         // Check the response to see if it's right or wrong.
         if (choice == correctAnswer) {
             ball = 'images/correct-answer-ball.png';
@@ -192,12 +178,9 @@ $(document).ready( function() {
         for (var i=0; i < questions.length; i++) {
             $('ul.tennis-balls').append('<li class="score-ball ball-' + i + '"><img src="images/no-answer-ball.png" height="57" width="57" alt="Score ball"></li>');
         }
-
     }
 
     function scrollToTop() {
         $(document).scrollTop(0);
     }
-
 });
-
