@@ -72,9 +72,16 @@ $(document).ready( function() {
         // Prevent the page from reloading.
         e.preventDefault();
         // Check the response and update the score.
-        checkResponse();
+        var judgement;
+        var response = checkResponse();
+        if (response) {
+            judgement = "Well done!";
+        } else {
+            judgement = "Nice try!";
+        }
         // Set the feedback to present to the user.
         var feedback = questions[questionNumber].feedback;
+        feedback = judgement + " " + feedback;
         // Hide the list of choices and display the feedback.
         $('ul.response-list').hide();
         $('div.answer').html('<span>Answer: </span><p class="answer-text">' + feedback + '</p>');
@@ -162,15 +169,18 @@ $(document).ready( function() {
         // score ball depending on the user's response to the question.
         var choice = $("input[type='radio'][name='selection']:checked").val();
         var correctAnswer = questions[questionNumber].correct;
+        var correct;
         var ball;
         // Check the response to see if it's right or wrong.
         if (choice == correctAnswer) {
             ball = 'images/correct-answer-ball.png';
+            correct = true;
         } else {
             ball = 'images/wrong-answer-ball.png';
+            correct = false;
         }
         $('li.ball-' + questionNumber + ' img').attr('src', ball);
-        return;
+        return correct;
     }
 
     function resetScore() {
