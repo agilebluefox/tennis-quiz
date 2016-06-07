@@ -71,6 +71,8 @@ $(document).ready( function() {
     $('.button').on('click', '#submit-button', function(e) {
         // Prevent the page from reloading.
         e.preventDefault();
+        // Check the response and update the score.
+        checkResponse();
         // Set the feedback to present to the user.
         var feedback = questions[questionNumber].feedback;
         // Hide the list of choices and display the feedback.
@@ -85,8 +87,6 @@ $(document).ready( function() {
         } else {
             setButton('retake');
         }
-        // Check the response and update the score.
-        checkResponse();
         // Go to the top of the page - for smaller displays.
         scrollToTop();
 
